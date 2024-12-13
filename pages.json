@@ -1,0 +1,104 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/singIn/singIn",
+      "style": {
+        "navigationBarTitleText": "签到"
+      }
+    },
+    {
+      "path": "pages/singInRecord/singInRecord",
+      "style": {
+        "navigationBarTitleText": "签到记录"
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/login/register",
+      "style": {
+        "navigationBarTitleText": "注册"
+      }
+    },
+    {
+      "path": "pages/attendanceManagement/attendanceManagement",
+      "style": {
+        "navigationBarTitleText": "考勤管理"
+      }
+    },
+    {
+      "path": "pages/dataAnalysis/dataAnalysis",
+      "style": {
+        "navigationBarTitleText": "数据分析"
+      }
+    }
+  ],
+/*  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/singIn/singIn",
+        "text": "签到",
+        "iconPath": "static/icons/device.png",
+        "selectedIconPath": "static/icons/device-active.png"
+      },
+      {
+        "pagePath": "pages/singInRecord/singInRecord",
+        "text": "签到记录",
+        "iconPath": "static/icons/content.png",
+        "selectedIconPath": "static/icons/content-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/icons/mine.png",
+        "selectedIconPath": "static/icons/mine-active.png"
+      }
+    ],
+    "color": "#999999",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black"
+  }, */
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/attendanceManagement/attendanceManagement",
+        "text": "考勤管理",
+        "iconPath": "static/icons/device.png",
+        "selectedIconPath": "static/icons/device-active.png"
+      },
+      {
+        "pagePath": "pages/dataAnalysis/dataAnalysis",
+        "text": "数据分析",
+        "iconPath": "static/icons/content.png",
+        "selectedIconPath": "static/icons/content-active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/icons/mine.png",
+        "selectedIconPath": "static/icons/mine-active.png"
+      }
+    ],
+    "color": "#999999",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black"
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
+}
