@@ -2,6 +2,7 @@
 	<view class="container">
 		<view class="user-info">
 			<image class="avatar" :src="userInfo.avatar" mode="aspectFill"></image>
+			<text>测试一下bug-fix,增加的另一个分支</text>
 			<text class="username">{{ userInfo.username }}</text>
 		</view>
 		
