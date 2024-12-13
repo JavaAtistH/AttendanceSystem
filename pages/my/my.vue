@@ -2,6 +2,7 @@
 	<view class="container">
 		<view class="user-info">
 			<image class="avatar" :src="userInfo.avatar" mode="aspectFill"></image>
+			<text>hot-fix==>baranch</text>
 			<text class="username">{{ userInfo.username }}</text>
 		</view>
 		
