@@ -2,11 +2,6 @@
 	<view class="container">
 		<view class="user-info">
 			<image class="avatar" :src="userInfo.avatar" mode="aspectFill"></image>
-<!-- <<<<<<< HEAD -->
-			<text>hot-fix==>baranch</text><!-- 当前分支代码 -->
-<!-- ======= -->
-			<text>测试一下bug-fix,增加的另一个分支</text><!-- 需要合并的代码 -->
-<!-- >>>>>>> bugfix -->
 			<text class="username">{{ userInfo.username }}</text>
 		</view>
 		

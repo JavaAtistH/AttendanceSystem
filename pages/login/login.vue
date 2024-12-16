@@ -37,34 +37,69 @@
 		console.log(loginType.value);
 	};
 
-	const handleLogin = () => {
-		// 这里添加登录逻辑
-		console.log('登录类型:', loginType.value)
-		console.log('用户名:', username.value)
-		console.log('密码:', password.value)
-		// 可以根据loginType的值来决定调用哪个登录API，
-		//这里直接跳上面还没有写登录逻辑
+const handleLogin = () => {
+    console.log('登录类型:', loginType.value)
+    console.log('用户名:', username.value)
+    console.log('密码:', password.value)
+    // 验证输入是否为空
+    if (!username.value || !password.value) {
+        uni.showToast({
+            title: '用户名或密码不能为空',
+            icon: 'none'
+        });
+        return;
+    }
+    // 根据登录类型调用不同的后端接口
+    let apiUrl = '';
+    if (loginType.value === 'admin') {
+        apiUrl = 'http://localhost:8081/admin/login';
+    } else {
+        apiUrl = 'http://localhost:8081/employee/login'; 
+    }
 
-		// 如果点击的是管理员就跳转到/pages/attendanceManagement
-		// 这里根据loginType的值决定跳转到哪个页面
-		if (loginType.value === 'admin') {
-			console.log('当前登录类型:', loginType.value)
-			// 如果是管理员，跳转到管理员的考勤管理页面
-			//动态设置tabBar，这样就不需要在pages.json里面配置tabBar了
-			// 动态修改 TabBar 配置为管理员配置	
-			uni.switchTab({
-				url: '/pages/attendanceManagement/attendanceManagement' // 管理员的主页面
-			})
-		} else {
-			uni.switchTab({
-				url: '/pages/singIn/singIn' // 员工的主页面
-			})
-		}
-		/*  uni.showToast({
-		    title: '登录功能待实现',
-		    icon: 'none'
-		  }) */
-	}
+    uni.request({
+        url: apiUrl,
+        method: 'POST',
+        header: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+            name: username.value,
+            password: password.value
+        },
+        success: (res) => {
+            if (res.statusCode === 200) {
+                uni.showToast({
+                    title: '登录成功',
+                    icon: 'success'
+                });
+
+                // 跳转到不同的页面
+                if (loginType.value === 'admin') {
+                    uni.switchTab({
+                        url: '/pages/attendanceManagement/attendanceManagement'
+                    });
+                } else {
+                    uni.switchTab({
+                        url: '/pages/singIn/singIn'
+                    });
+                }
+            } else {
+                uni.showToast({
+                    title: res.data,
+                    icon: 'none'
+                });
+            }
+        },
+        fail: (err) => {
+            console.error('请求失败:', err);
+            uni.showToast({
+                title: '账号或密码有误，请稍后再试',
+                icon: 'none'
+            });
+        }
+    });
+};
 
 	const goToRegister = () => {
 		// 跳转到注册页面
