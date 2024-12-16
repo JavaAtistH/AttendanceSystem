@@ -2,121 +2,165 @@
 	<view class="container">
 		<view class="user-info">
 			<image class="avatar" :src="userInfo.avatar" mode="aspectFill"></image>
-			<text class="username">{{ userInfo.username }}</text>
+			<text class="username">欢迎{{ userInfo.username }}</text>
 		</view>
 		
 		<view class="action-buttons">
 			<button class="btn edit-btn" @click="editUserInfo">修改用户信息</button>
 			<button class="btn logout-btn" @click="logout">退出登录</button>
 		</view>
+		<view class="additional-info">
+			<button class="info-btn" @click="showAboutAuthor">关于作者</button>
+			<button class="info-btn" @click="showMyTeam">我的团队</button>
+			<button class="info-btn" @click="showVersionInfo">版本信息</button>
+			<button class="info-btn" @click="goToSettings">设置</button>
+		</view>
 	</view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				userInfo: {
-					avatar: '/static/p1.jpg', // 默认头像路径，请确保此文件存在
-					username: '用户名'
-				}
-			}
-		},
-		onLoad() {
-			// 这里可以从本地存储或API获取用户信息
-			this.getUserInfo()
-		},
-		methods: {
-			getUserInfo() {
-				// 从本地存储获取用户信息的示例
-				const userInfo = uni.getStorageSync('userInfo')
-				if (userInfo) {
-					this.userInfo = JSON.parse(userInfo)
-				}
-				// 如果需要从API获取，可以使用类似下面的代码
-				// uni.request({
-				//     url: 'your_api_url',
-				//     method: 'GET',
-				//     success: (res) => {
-				//         this.userInfo = res.data
-				//     }
-				// })
-			},
-			editUserInfo() {
-				// 跳转到编辑用户信息页面
-				uni.navigateTo({
-					url: '/pages/edit-profile/edit-profile'
-				})
-			},
-			logout() {
-				// 清除用户信息
-				uni.removeStorageSync('userInfo')
-				// 清除登录状态
-				uni.removeStorageSync('token')
-				
-				// 显示退出成功提示
-				uni.showToast({
-					title: '退出登录成功',
-					icon: 'success',
-					duration: 2000
-				})
-				
-				// 延迟跳转到登录页面，给用户一些时间看到提示
-				setTimeout(() => {
-					uni.reLaunch({
-						url: '/pages/login/login'
-					})
-				}, 2000)
+export default {
+	data() {
+		return {
+			userInfo: {
+				avatar: '/static/default-avatar.png',
+				username: '用户名'
 			}
 		}
+	},
+	onLoad() {
+		this.getUserInfo()
+	},
+	methods: {
+		getUserInfo() {
+			const userInfo = uni.getStorageSync('userInfo')
+			if (userInfo) {
+				this.userInfo = JSON.parse(userInfo)
+			}
+		},
+		editUserInfo() {
+			uni.navigateTo({
+				url: '/pages/edit-profile/edit-profile'
+			})
+		},
+		logout() {
+			uni.removeStorageSync('userInfo')
+			uni.removeStorageSync('token')
+			
+			uni.showToast({
+				title: '退出登录成功',
+				icon: 'success',
+				duration: 2000
+			})
+			
+			setTimeout(() => {
+				uni.reLaunch({
+					url: '/pages/login/login'
+				})
+			}, 2000)
+		},
+		showAboutAuthor() {
+			uni.showModal({
+				title: '关于作者',
+				content: '黄科钦',
+				showCancel: false
+			})
+		},
+		showMyTeam() {
+			uni.showModal({
+				title: '我的团队',
+				content: '黄科钦666',
+				showCancel: false
+			})
+		},
+		showVersionInfo() {
+			uni.showModal({
+				title: '版本信息',
+				content: '当前版本: 1.0.0',
+				showCancel: false
+			})
+		},
+		goToSettings() {
+			uni.navigateTo({
+				url: '/pages/settings/settings'
+			})
+		}
 	}
+}
 </script>
 
 <style>
 .container {
-	padding: 20px;
+	min-height: 100vh;
+	padding: 40px 20px;
+	background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .user-info {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 }
 
 .avatar {
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 	border-radius: 50%;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	border: 4px solid #ffffff;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .username {
-	font-size: 18px;
+	font-size: 24px;
 	font-weight: bold;
+	color: #333333;
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
-.action-buttons {
-	display: flex;
-	flex-direction: column;
+.action-buttons, .additional-info {
+	width: 100%;
+	max-width: 300px;
 }
 
-.btn {
+.btn, .info-btn {
+	width: 100%;
 	margin-bottom: 15px;
-	height: 40px;
-	line-height: 40px;
+	height: 50px;
+	line-height: 50px;
 	text-align: center;
-	border-radius: 5px;
+	border-radius: 25px;
 	font-size: 16px;
+	font-weight: bold;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .edit-btn {
-	background-color: #007aff;
+	background-color: #4CAF50;
 	color: #ffffff;
 }
 
 .logout-btn {
-	background-color: #ff3b30;
+	background-color: #FF5722;
 	color: #ffffff;
+}
+
+.info-btn {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: #333333;
+}
+
+.btn:active, .info-btn:active {
+	transform: translateY(2px);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.additional-info {
+	margin-top: 30px;
 }
 </style>
