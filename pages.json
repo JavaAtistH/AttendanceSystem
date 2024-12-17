@@ -42,13 +42,7 @@
         "navigationBarTitleText": "数据分析"
       }
     },
-    {
-    	"path" : "pages/edit-profile/edit-profile",
-    	"style" : 
-    	{
-    		"navigationBarTitleText" : ""
-    	}
-    },
+
     {
     	"path" : "pages/attendance-status/attendance-status",
     	"style" : 
@@ -63,6 +57,12 @@
     		"navigationBarTitleText" : ""
     	}
     },
+	 {
+	      "path": "pages/edit-user/edit-user",
+	      "style": {
+	        "navigationBarTitleText": "编辑用户信息"
+	      }
+	    },
     {
     	"path" : "pages/employee-info/employee-info",
     	"style" : 

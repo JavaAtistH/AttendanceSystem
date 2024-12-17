@@ -112,7 +112,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @font-face {
 	font-family: 'iconfont';
 	src: url('//at.alicdn.com/t/font_1234567_abcdefg.ttf') format('truetype');
@@ -142,10 +142,10 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 0;
-	background: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+	justify-content: center;
 	min-height: 100vh;
-	color: #fff;
+	background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+	padding: 20px;
 }
 
 .header {

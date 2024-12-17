@@ -89,16 +89,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container {
-	min-height: 100vh;
-	padding: 40px 20px;
-	background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+	padding: 20px;
 }
-
 .user-info {
 	display: flex;
 	flex-direction: column;

@@ -138,6 +138,15 @@ export default {
 </script>
 
 <style scoped>
+.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+		padding: 20px;
+	}
 @font-face {
 	font-family: 'iconfont';
 	src: url('//at.alicdn.com/t/font_1234567_abcdefg.ttf') format('truetype');

@@ -61,8 +61,14 @@ export default {
 
 <style>
 .leave-records {
-  padding: 20px;
-  background-color: #f8f8f8;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	min-height: 100vh;
+  	background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  	padding: 20px;
+  
 }
 .record {
   background: #fff;
