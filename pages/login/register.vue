@@ -1,126 +1,213 @@
 <template>
-  <view class="container">
-    <view class="register-box">
-      <text class="title">用户注册</text>
+  <div class="container">
+    <div class="register-box">
+      <h1 class="title">用户注册</h1>
       
-      <input 
-        class="input" 
-        type="text" 
-        v-model="username" 
-        placeholder="请输入用户名"
-      />
-      <input 
-        class="input" 
-        type="password" 
-        v-model="password" 
-        placeholder="请输入密码"
-      />
-      <input 
-        class="input" 
-        type="password" 
-        v-model="confirmPassword" 
-        placeholder="请确认密码"
-      />
+      <div class="input-group">
+        <input 
+          class="input" 
+          type="text" 
+          v-model="registerData.adminname" 
+          placeholder="请输入用户名"
+        />
+        <span class="input-border"></span>
+      </div>
       
-      <button class="register-btn" @click="handleRegister">注册</button>
+      <div class="input-group">
+        <input 
+          class="input" 
+          type="password" 
+          v-model="registerData.password" 
+          placeholder="请输入密码"
+        />
+        <span class="input-border"></span>
+      </div>
       
-      <text class="login-link" @click="goToLogin">已有账号？返回登录</text>
-    </view>
-  </view>
+      <div class="input-group">
+        <input 
+          class="input" 
+          type="password" 
+          v-model="registerData.confirmPassword" 
+          placeholder="请确认密码"
+        />
+        <span class="input-border"></span>
+      </div>
+      
+      <button class="register-btn" @click="handleRegister">
+        <span>注册</span>
+      </button>
+      
+      <p class="login-link" @click="goToLogin">已有账号？返回登录</p>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 
-const username = ref('')
-const password = ref('')
-const confirmPassword = ref('')
+const registerData = ref({
+  adminname: '',
+  password: '',
+  confirmPassword: ''
+})
 
 const handleRegister = () => {
-  if (!username.value || !password.value || !confirmPassword.value) {
+  if (!registerData.value.adminname || !registerData.value.password) {
     uni.showToast({
-      title: '请填写所有字段',
+      title: '用户名和密码不能为空',
       icon: 'none'
     })
     return
   }
 
-  if (password.value !== confirmPassword.value) {
-    uni.showToast({
-      title: '两次输入的密码不一致',
-      icon: 'none'
-    })
-    return
-  }
-
-  // 这里添加注册逻辑
-  console.log('用户名:', username.value)
-  console.log('密码:', password.value)
-  
-  // 可以在这里调用注册API
-  uni.showToast({
-    title: '注册功能待实现',
-    icon: 'none'
-  })
+  uni.request({
+    url: 'http://localhost:8081/admin/add',
+    method: 'POST',
+    header: {
+      'Content-Type': 'application/json'
+    },
+    data: {
+      adminname: registerData.value.adminname,
+      password: registerData.value.password
+    },
+    success: (res) => {
+      console.log('注册成功:', res.data);
+      uni.showToast({
+        title: '添加成功',
+        icon: 'success'
+      });
+    },
+    fail: (err) => {
+      console.error('请求失败:', err);
+      uni.showToast({
+        title: '添加失败，请重试',
+        icon: 'none'
+      });
+    }
+  });
 }
 
 const goToLogin = () => {
-  // 返回登录页面
   uni.navigateBack()
 }
 </script>
 
-<style>
+<style scoped>
 .container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+  font-family: 'Arial', sans-serif;
 }
 
 .register-box {
-  width: 80%;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 28px;
+  color: #ffffff;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
 }
 
 .input {
   width: 100%;
-  height: 40px;
-  margin-bottom: 15px;
-  padding: 0 10px;
-  border: 1px solid #dcdcdc;
-  border-radius: 5px;
-  font-size: 14px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  outline: none;
+  transition: 0.3s;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: 0.3s;
+}
+
+.input:focus ~ .input-border,
+.input:valid ~ .input-border {
+  width: 100%;
 }
 
 .register-btn {
   width: 100%;
-  height: 40px;
-  background-color: #007aff;
-  color: #ffffff;
+  padding: 12px;
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-top: 10px;
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.register-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.register-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #feca57, #ff6b6b);
+  transition: 0.5s;
+  z-index: 0;
+}
+
+.register-btn:hover::before {
+  left: 0;
 }
 
 .login-link {
-  display: block;
   text-align: center;
-  margin-top: 15px;
-  color: #007aff;
+  margin-top: 20px;
+  color: #ffffff;
   font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-link:hover {
+  text-decoration: underline;
 }
 </style>

@@ -31,7 +31,7 @@ export default {
       leaveRecords: [
         {
           name: "张三",
-          reason: "身体不适",
+          reason: "出去和小美玩",
           startTime: "2024-12-20 09:00",
           endTime: "2024-12-21 18:00",
           applyDate: "2024-12-16",
@@ -39,7 +39,7 @@ export default {
         },
         {
           name: "李四",
-          reason: "家中有事",
+          reason: "出去和小美玩",
           startTime: "2024-12-25 08:30",
           endTime: "2024-12-26 17:30",
           applyDate: "2024-12-15",
@@ -47,7 +47,7 @@ export default {
         },
         {
           name: "王五",
-          reason: "外出旅游",
+          reason: "出去和小美玩",
           startTime: "2024-12-22 12:00",
           endTime: "2024-12-24 12:00",
           applyDate: "2024-12-14",

@@ -1,0 +1,162 @@
+
+@font-face {
+	font-family: 'iconfont';
+	src: url('//at.alicdn.com/t/font_1234567_abcdefg.ttf') format('truetype');
+}
+.iconfont[data-v-19377750] {
+	font-family: "iconfont" !important;
+	font-size: 24px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon-left[data-v-19377750]:before {
+	content: "\e6ef";
+}
+.icon-right[data-v-19377750]:before {
+	content: "\e6ed";
+}
+.container[data-v-19377750] {
+	background-color: #f0f2f5;
+	min-height: 100vh;
+	padding: 20px;
+}
+.header[data-v-19377750] {
+	margin-bottom: 20px;
+}
+.title[data-v-19377750] {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+}
+.user-list[data-v-19377750] {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+.user-card[data-v-19377750] {
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.user-card[data-v-19377750]:active {
+	transform: translateY(2px);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+.user-info[data-v-19377750] {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+.user-avatar[data-v-19377750] {
+	width: 50px;
+	height: 50px;
+	background-color: #007aff;
+	color: #fff;
+	border-radius: 25px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+.user-details[data-v-19377750] {
+	display: flex;
+	flex-direction: column;
+}
+.user-name[data-v-19377750] {
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+}
+.user-department[data-v-19377750] {
+	font-size: 14px;
+	color: #666;
+}
+.user-status[data-v-19377750] {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 5px;
+}
+.user-age[data-v-19377750] {
+	font-size: 14px;
+	color: #666;
+}
+.status-badge[data-v-19377750] {
+	padding: 5px 10px;
+	border-radius: 15px;
+	font-size: 12px;
+	font-weight: bold;
+}
+.attended[data-v-19377750] {
+	background-color: #e6f7ff;
+	color: #1890ff;
+}
+.not-attended[data-v-19377750] {
+	background-color: #fff1f0;
+	color: #ff4d4f;
+}
+.pagination[data-v-19377750] {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	gap: 15px;
+}
+.pagination-btn[data-v-19377750] {
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	background-color: #007aff;
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	transition: background-color 0.3s ease;
+}
+.pagination-btn[data-v-19377750]:disabled {
+	background-color: #ccc;
+}
+.pagination-btn[data-v-19377750]:active {
+	background-color: #0056b3;
+}
+.page-info[data-v-19377750] {
+	font-size: 14px;
+	color: #666;
+}
+@media (min-width: 768px) {
+.container[data-v-19377750] {
+		padding: 40px;
+}
+.user-list[data-v-19377750] {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 20px;
+}
+}
+.user-actions[data-v-19377750] {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+}
+.edit-btn[data-v-19377750] {
+	background-color: #4caf50;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 14px;
+}
+.delete-btn[data-v-19377750] {
+	background-color: #f44336;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 14px;
+}

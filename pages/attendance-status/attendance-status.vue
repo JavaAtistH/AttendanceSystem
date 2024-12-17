@@ -20,6 +20,11 @@
 						{{ user.isAttend === 1 ? '已签到' : '未签到' }}
 					</view>
 				</view>
+				<!-- 编辑和删除按钮 -->
+				<view class="user-actions">
+					<button class="edit-btn" @click="editUser(user.id)">编辑</button>
+					<button class="delete-btn" @click="confirmDelete(user.id)">删除</button>
+				</view>
 			</view>
 		</view>
 
@@ -49,7 +54,6 @@ export default {
 	methods: {
 		// 获取分页数据
 		getPage(page) {
-			// 检查页码范围
 			if (page < 1 || page > this.pages) return;
 
 			uni.request({
@@ -68,6 +72,51 @@ export default {
 					} else {
 						uni.showToast({
 							title: "数据加载失败",
+							icon: "none",
+						});
+					}
+				},
+				fail: () => {
+					uni.showToast({
+						title: "请求失败，请检查网络",
+						icon: "none",
+					});
+				},
+			});
+		},
+		// 跳转到编辑页面
+		editUser(userId) {
+			uni.navigateTo({
+				url: `/pages/edit-user/edit-user?id=${userId}`, // 替换为你的编辑页面路径
+			});
+		},
+		// 确认删除
+		confirmDelete(userId) {
+			uni.showModal({
+				title: "确认删除",
+				content: "确定要删除该用户吗？",
+				success: (res) => {
+					if (res.confirm) {
+						this.deleteUser(userId);
+					}
+				},
+			});
+		},
+		// 删除用户
+		deleteUser(userId) {
+			uni.request({
+				url: `http://localhost:8081/user/${userId}`,
+				method: "DELETE",
+				success: (res) => {
+					if (res.statusCode === 200) {
+						uni.showToast({
+							title: "删除成功",
+							icon: "success",
+						});
+						this.getPage(this.pageNum); // 重新加载当前页数据
+					} else {
+						uni.showToast({
+							title: "删除失败",
 							icon: "none",
 						});
 					}
@@ -256,6 +305,27 @@ export default {
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 20px;
 	}
+}
+.user-actions {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.edit-btn {
+	background-color: #4caf50;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+.delete-btn {
+	background-color: #f44336;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: 14px;
 }
 </style>
 

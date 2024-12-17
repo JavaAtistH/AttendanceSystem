@@ -5,6 +5,7 @@
 		</view>
 		<view class="content">
 			<text class="welcome-text">欢迎使用考勤管理系统！</text>
+			<text class="welcome-text">开启牛马生活的一天！从打卡开始</text>
 			<view class="card-container">
 				<view class="card attendance-card" @click="checkAttendance">
 					<view class="card-icon">
@@ -29,7 +30,7 @@
 						<text class="iconfont icon-leave"></text>
 					</view>
 					<view class="card-content">
-						<text class="card-title">请假申请</text>
+						<text class="card-title">员工请假申请</text>
 					</view>
 				</view>
 				<view class="card employee-info-card" @click="enterEmployeeInfo">
