@@ -110,7 +110,7 @@ export default {
 				isAttend: this.formData.isAttend ? 1 : 0
 			};
 			uni.request({
-				url: `http://localhost:8081/user/update`,
+				url: `http://192.168.87.136:8081/user/update`,
 				method: 'PUT',
 				data: submitData,
 				header: {
